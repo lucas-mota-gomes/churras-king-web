@@ -1,0 +1,51 @@
+<section class="px-4">
+  <form [formGroup]="saidasForm" action="">
+    <div class="mb-3">
+      <label class="form-label">Tipo</label>
+      <p-selectButton formControlName="tipo" [options]="[{name:'Variavel', value: 0}, {name: 'Fixo', value: 1}]" optionLabel="name"></p-selectButton>
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label d-block">Categoria</label>
+      <p-dropdown formControlName="categoria" [options]="categorias" optionValue="name" optionLabel="name"></p-dropdown>
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label d-block">Produto</label>
+      <p-dropdown formControlName="produto" [options]="produtos" optionValue="name" optionLabel="name"></p-dropdown>
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label d-block">Quantidade de caixas</label>
+      <p-inputNumber (ngModelChange)="updateValues()" formControlName="qtCaixa" [showButtons]="true" buttonLayout="horizontal" spinnerMode="horizontal"
+    decrementButtonClass="p-button-danger" incrementButtonClass="p-button-success" incrementButtonIcon="pi pi-plus" decrementButtonIcon="pi pi-minus"></p-inputNumber>
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label d-block">Quantidade por caixa</label>
+      <p-inputNumber (ngModelChange)="updateValues()" formControlName="qtPorCaixa" [showButtons]="true" buttonLayout="horizontal" spinnerMode="horizontal"
+    decrementButtonClass="p-button-danger" incrementButtonClass="p-button-success" incrementButtonIcon="pi pi-plus" decrementButtonIcon="pi pi-minus"></p-inputNumber>
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label d-block">Quantidade total por caixa</label>
+      <p-tag severity="danger" value="{{getControler('qtTotCaixa')}}"></p-tag>
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label d-block">Valor Unidade Pacote</label>
+      <p-inputNumber locale="es-ES" (ngModelChange)="updateValues()" formControlName="vUniPac" [showButtons]="true" buttonLayout="horizontal" spinnerMode="horizontal"
+    decrementButtonClass="p-button-danger" [minFractionDigits]="1" incrementButtonClass="p-button-success" incrementButtonIcon="pi pi-plus" decrementButtonIcon="pi pi-minus"></p-inputNumber>
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label d-block">Valor Unidade</label>
+      <p-tag severity="danger" value="{{getControler('vUni')}}"></p-tag>
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label d-block">Valor Total</label>
+      <p-tag severity="danger" value="{{getControler('vTot')}}"></p-tag>
+    </div>
+  </form>
+</section>
