@@ -1,0 +1,16 @@
+@import "../../app.component.scss";
+.saida-form {
+  // background-color: $main-color;
+  border-radius: 4px;
+  color: white;
+  & .mb-3 {
+    background: rgb(182, 22, 34);
+    background: linear-gradient(
+      74deg,
+      rgba(182, 22, 34, 1) 0%,
+      rgba(128, 19, 54, 1) 100%
+    );
+    border-radius: 4px;
+    padding: 1rem 0;
+  }
+}

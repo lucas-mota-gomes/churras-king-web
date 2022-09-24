@@ -1,5 +1,5 @@
 <section class="px-4">
-  <form [formGroup]="saidasForm" action="">
+  <form class="text-center saida-form p-3" [formGroup]="saidasForm" action="">
     <div class="mb-3">
       <label class="form-label">Tipo</label>
       <p-selectButton formControlName="tipo" [options]="[{name:'Variavel', value: 0}, {name: 'Fixo', value: 1}]" optionLabel="name"></p-selectButton>
