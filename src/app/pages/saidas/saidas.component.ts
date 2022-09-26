@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MessageService } from 'primeng/api';
+import { SaidaService } from 'src/app/services/saida.service';
 
 @Component({
   selector: 'app-saidas',
@@ -57,6 +59,9 @@ export class SaidasComponent implements OnInit {
     { name: "FITA DUREX" },
   ];
 
+  public loading: boolean = false;
+  public isCopy: boolean[] = [];
+
   public saidasForm: FormGroup = this._fb.group({
     categoria: [this.categorias[0].name, [Validators.required]],
     tipo: [null, [Validators.required]],
@@ -71,13 +76,17 @@ export class SaidasComponent implements OnInit {
   });
 
   slider: number = 0;
-  constructor(private _fb: FormBuilder) { }
+  constructor(private _fb: FormBuilder, private messageService: MessageService, private saidaService: SaidaService) { }
 
   ngOnInit(): void {
   }
 
   teste(event: any) {
 
+  }
+
+  addSingle() {
+    this.messageService.add({ severity: 'success', summary: 'Sucesso', detail: 'Saída cadasrada com sucesso' });
   }
 
   updateValues() {
@@ -95,6 +104,42 @@ export class SaidasComponent implements OnInit {
 
   setControler(controler: string, value: any) {
     return this.saidasForm.get(controler)?.setValue(value);
+  }
+
+  salvar() {
+    this.loading = true;
+    const body = {
+      tipo: this.saidasForm.value.tipo,
+      categoria: this.saidasForm.value.categoria,
+      produto: this.saidasForm.value.string,
+      quantidade_de_caixas: this.saidasForm.value.qtCaixa,
+      quantidade_por_caixa: this.saidasForm.value.qtPorCaixa,
+      valor_unidade_pacote: this.saidasForm.value.vUniPac,
+      quantidade_total_por_caixa: this.saidasForm.value.qtTotCaixa,
+      valor_total: this.saidasForm.value.vTot,
+      valor_unidade: this.saidasForm.value.vUni
+    }
+    this.saidaService.createSaida(body).then((result: any) => {
+      console.log("🚀 ~ file: saidas.component.ts ~ line 124 ~ SaidasComponent ~ this.saidaService.createSaida ~ this.isCopy", this.isCopy)
+      if (this.isCopy && this.isCopy[0] != true) {
+        this.saidasForm = this._fb.group({
+          categoria: [this.categorias[0].name, [Validators.required]],
+          tipo: [null, [Validators.required]],
+          produto: [this.produtos[0].name, [Validators.required]],
+          qtCaixa: [0, [Validators.required]],
+          qtPorCaixa: [0, [Validators.required]],
+          qtTotCaixa: [0, [Validators.required]],
+          vUniPac: [0, [Validators.required]],
+          vUni: [0, [Validators.required]],
+          vTot: [0, [Validators.required]],
+          status: [false, [Validators.required]]
+        });
+      }
+      this.addSingle();
+      this.loading = false;
+    }).catch((error: any) => {
+      console.log(error);
+    })
   }
 
 }

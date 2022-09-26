@@ -1,51 +1,88 @@
+<style>
+  .input-number input {
+    width: 50%;
+  }
+</style>
+
 <section class="px-4">
   <form class="text-center saida-form p-3" [formGroup]="saidasForm" action="">
-    <div class="mb-3">
-      <label class="form-label">Tipo</label>
-      <p-selectButton formControlName="tipo" [options]="[{name:'Variavel', value: 0}, {name: 'Fixo', value: 1}]" optionLabel="name"></p-selectButton>
+    <div class="mb-3 row justify-content-center">
+      <div class="col-6">
+        <label class="form-label">Tipo</label>
+        <p-selectButton formControlName="tipo" [options]="[{name:'Variavel', value: 0}, {name: 'Fixo', value: 1}]"
+          optionLabel="name"></p-selectButton>
+      </div>
+
+      <div class="col-6">
+        <label class="form-label d-block">Categoria</label>
+        <p-dropdown formControlName="categoria" [options]="categorias" optionValue="name" optionLabel="name">
+        </p-dropdown>
+      </div>
+
+      <div class="col-6 mt-3">
+        <label class="form-label d-block">Produto</label>
+        <p-dropdown formControlName="produto" [options]="produtos" optionValue="name" optionLabel="name"></p-dropdown>
+      </div>
     </div>
 
-    <div class="mb-3">
-      <label class="form-label d-block">Categoria</label>
-      <p-dropdown formControlName="categoria" [options]="categorias" optionValue="name" optionLabel="name"></p-dropdown>
+    <div class="mb-3 row position-relative">
+      <div class="col-6 input-number">
+        <label class="form-label d-block">Quantidade de caixas</label>
+        <p-inputNumber (ngModelChange)="updateValues()" formControlName="qtCaixa" [showButtons]="true"
+          buttonLayout="horizontal" spinnerMode="horizontal" decrementButtonClass="p-button-danger"
+          incrementButtonClass="p-button-success" incrementButtonIcon="pi pi-plus" decrementButtonIcon="pi pi-minus">
+        </p-inputNumber>
+      </div>
+
+      <div class="col-6 input-number">
+        <label class="form-label d-block">Quantidade por caixa</label>
+        <p-inputNumber (ngModelChange)="updateValues()" formControlName="qtPorCaixa" [showButtons]="true"
+          buttonLayout="horizontal" spinnerMode="horizontal" decrementButtonClass="p-button-danger"
+          incrementButtonClass="p-button-success" incrementButtonIcon="pi pi-plus" decrementButtonIcon="pi pi-minus">
+        </p-inputNumber>
+      </div>
     </div>
 
-    <div class="mb-3">
-      <label class="form-label d-block">Produto</label>
-      <p-dropdown formControlName="produto" [options]="produtos" optionValue="name" optionLabel="name"></p-dropdown>
+    <div [ngClass]="{'d-none' : getControler('qtTotCaixa') <= 0 || getControler('vTot') <= 0}"
+      class="mb-3 side-card p-3 animate__animated animate__slideInRight">
+      <!-- <div>
+        <i class="pi pi-chevron-left py-4 me-3"></i>
+      </div> -->
+      <div>
+        <label class="form-label d-block">Qnt. total por caixa</label>
+        <p-tag severity="danger" value="{{getControler('qtTotCaixa')}}"></p-tag>
+      </div>
+
+      <div class="mx-3">
+        <label class="form-label d-block">Valor Total</label>
+        <p-tag severity="danger" value="{{getControler('vTot')}}"></p-tag>
+      </div>
+
+      <div>
+        <label class="form-label d-block">Valor Unidade</label>
+        <p-tag severity="danger" value="{{getControler('vUni')}}"></p-tag>
+      </div>
     </div>
 
-    <div class="mb-3">
-      <label class="form-label d-block">Quantidade de caixas</label>
-      <p-inputNumber (ngModelChange)="updateValues()" formControlName="qtCaixa" [showButtons]="true" buttonLayout="horizontal" spinnerMode="horizontal"
-    decrementButtonClass="p-button-danger" incrementButtonClass="p-button-success" incrementButtonIcon="pi pi-plus" decrementButtonIcon="pi pi-minus"></p-inputNumber>
-    </div>
-
-    <div class="mb-3">
-      <label class="form-label d-block">Quantidade por caixa</label>
-      <p-inputNumber (ngModelChange)="updateValues()" formControlName="qtPorCaixa" [showButtons]="true" buttonLayout="horizontal" spinnerMode="horizontal"
-    decrementButtonClass="p-button-danger" incrementButtonClass="p-button-success" incrementButtonIcon="pi pi-plus" decrementButtonIcon="pi pi-minus"></p-inputNumber>
-    </div>
-
-    <div class="mb-3">
-      <label class="form-label d-block">Quantidade total por caixa</label>
-      <p-tag severity="danger" value="{{getControler('qtTotCaixa')}}"></p-tag>
-    </div>
-
-    <div class="mb-3">
+    <div class="mb-3 row">
       <label class="form-label d-block">Valor Unidade Pacote</label>
-      <p-inputNumber locale="es-ES" (ngModelChange)="updateValues()" formControlName="vUniPac" [showButtons]="true" buttonLayout="horizontal" spinnerMode="horizontal"
-    decrementButtonClass="p-button-danger" [minFractionDigits]="1" incrementButtonClass="p-button-success" incrementButtonIcon="pi pi-plus" decrementButtonIcon="pi pi-minus"></p-inputNumber>
+      <p-inputNumber locale="es-ES" (ngModelChange)="updateValues()" formControlName="vUniPac" [showButtons]="true"
+        buttonLayout="horizontal" spinnerMode="horizontal" decrementButtonClass="p-button-danger"
+        [minFractionDigits]="1" incrementButtonClass="p-button-success" incrementButtonIcon="pi pi-plus"
+        decrementButtonIcon="pi pi-minus"></p-inputNumber>
     </div>
 
-    <div class="mb-3">
-      <label class="form-label d-block">Valor Unidade</label>
-      <p-tag severity="danger" value="{{getControler('vUni')}}"></p-tag>
-    </div>
-
-    <div class="mb-3">
-      <label class="form-label d-block">Valor Total</label>
-      <p-tag severity="danger" value="{{getControler('vTot')}}"></p-tag>
-    </div>
   </form>
+  <div class="text-center saida-form p-3 pt-0">
+    <div class="mb-3 row justify-content-center">
+      <button (click)="salvar()" [disabled]="loading || !saidasForm.valid"
+        class="btn btn-danger col-6 mb-3 me-1">Salvar</button>
+      <p-checkbox class="justify-content-center mb-3" name="groupname" label="Manter informações?" [value]="true"
+        [(ngModel)]="isCopy"></p-checkbox>
+      <button class="btn btn-danger col-6">Voltar</button>
+      <p-progressSpinner class="position-absolute" *ngIf="loading"></p-progressSpinner>
+    </div>
+  </div>
 </section>
+
+<p-toast position="top-left"></p-toast>
