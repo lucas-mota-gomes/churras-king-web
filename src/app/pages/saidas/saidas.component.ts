@@ -109,9 +109,9 @@ export class SaidasComponent implements OnInit {
   salvar() {
     this.loading = true;
     const body = {
-      tipo: this.saidasForm.value.tipo,
+      tipo: this.saidasForm.value.tipo.name,
       categoria: this.saidasForm.value.categoria,
-      produto: this.saidasForm.value.string,
+      produto: this.saidasForm.value.produto,
       quantidade_de_caixas: this.saidasForm.value.qtCaixa,
       quantidade_por_caixa: this.saidasForm.value.qtPorCaixa,
       valor_unidade_pacote: this.saidasForm.value.vUniPac,
@@ -119,8 +119,8 @@ export class SaidasComponent implements OnInit {
       valor_total: this.saidasForm.value.vTot,
       valor_unidade: this.saidasForm.value.vUni
     }
+    console.log("🚀 ~ file: saidas.component.ts ~ line 122 ~ SaidasComponent ~ salvar ~ body", body)
     this.saidaService.createSaida(body).then((result: any) => {
-      console.log("🚀 ~ file: saidas.component.ts ~ line 124 ~ SaidasComponent ~ this.saidaService.createSaida ~ this.isCopy", this.isCopy)
       if (this.isCopy && this.isCopy[0] != true) {
         this.saidasForm = this._fb.group({
           categoria: [this.categorias[0].name, [Validators.required]],

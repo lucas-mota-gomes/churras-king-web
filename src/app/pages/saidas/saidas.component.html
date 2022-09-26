@@ -6,7 +6,7 @@
 
 <section class="px-4">
   <form class="text-center saida-form p-3" [formGroup]="saidasForm" action="">
-    <div class="mb-3 row justify-content-center">
+    <div class="mb-3 row justify-content-center animate__animated animate__slideInRight">
       <div class="col-6">
         <label class="form-label">Tipo</label>
         <p-selectButton formControlName="tipo" [options]="[{name:'Variavel', value: 0}, {name: 'Fixo', value: 1}]"
@@ -25,7 +25,7 @@
       </div>
     </div>
 
-    <div class="mb-3 row position-relative">
+    <div class="mb-3 row position-relative animate__animated animate__slideInLeft">
       <div class="col-6 input-number">
         <label class="form-label d-block">Quantidade de caixas</label>
         <p-inputNumber (ngModelChange)="updateValues()" formControlName="qtCaixa" [showButtons]="true"
@@ -64,7 +64,7 @@
       </div>
     </div>
 
-    <div class="mb-3 row">
+    <div class="mb-3 row animate__animated animate__slideInRight">
       <label class="form-label d-block">Valor Unidade Pacote</label>
       <p-inputNumber locale="es-ES" (ngModelChange)="updateValues()" formControlName="vUniPac" [showButtons]="true"
         buttonLayout="horizontal" spinnerMode="horizontal" decrementButtonClass="p-button-danger"
@@ -73,13 +73,13 @@
     </div>
 
   </form>
-  <div class="text-center saida-form p-3 pt-0">
+  <div class="text-center saida-form p-3 pt-0 animate__animated animate__slideInLeft">
     <div class="mb-3 row justify-content-center">
       <button (click)="salvar()" [disabled]="loading || !saidasForm.valid"
         class="btn btn-danger col-6 mb-3 me-1">Salvar</button>
       <p-checkbox class="justify-content-center mb-3" name="groupname" label="Manter informações?" [value]="true"
         [(ngModel)]="isCopy"></p-checkbox>
-      <button class="btn btn-danger col-6">Voltar</button>
+      <button routerLink="/home" class="btn btn-danger col-6">Voltar</button>
       <p-progressSpinner class="position-absolute" *ngIf="loading"></p-progressSpinner>
     </div>
   </div>
