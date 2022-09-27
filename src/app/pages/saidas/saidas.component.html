@@ -21,7 +21,7 @@
 
       <div class="col-6 mt-3">
         <label class="form-label d-block">Produto</label>
-        <p-dropdown formControlName="produto" [options]="produtos" optionValue="name" optionLabel="name"></p-dropdown>
+        <p-dropdown formControlName="produto" [options]="productData.DATA" optionLabel="name"></p-dropdown>
       </div>
     </div>
 
@@ -36,7 +36,7 @@
 
       <div class="col-6 input-number">
         <label class="form-label d-block">Quantidade por caixa</label>
-        <p-inputNumber (ngModelChange)="updateValues()" formControlName="qtPorCaixa" [showButtons]="true"
+        <p-inputNumber [minFractionDigits]="getControler('produto').type" locale="es-ES" (ngModelChange)="updateValues()" formControlName="qtPorCaixa" [showButtons]="true"
           buttonLayout="horizontal" spinnerMode="horizontal" decrementButtonClass="p-button-danger"
           incrementButtonClass="p-button-success" incrementButtonIcon="pi pi-plus" decrementButtonIcon="pi pi-minus">
         </p-inputNumber>
@@ -73,7 +73,7 @@
     </div>
 
   </form>
-  <div class="text-center saida-form p-3 pt-0 animate__animated animate__slideInLeft">
+  <div class="text-center saida-form button-form p-3 pt-0 animate__animated animate__slideInLeft">
     <div class="mb-3 row justify-content-center">
       <button (click)="salvar()" [disabled]="loading || !saidasForm.valid"
         class="btn btn-danger col-6 mb-3 me-1">Salvar</button>
@@ -84,5 +84,3 @@
     </div>
   </div>
 </section>
-
-<p-toast position="top-left"></p-toast>

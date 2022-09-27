@@ -21,13 +21,19 @@ import { MessageService } from 'primeng/api';
 import { SaidaService } from './services/saida.service';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { CheckboxModule } from 'primeng/checkbox';
+import { ConfigComponent } from './pages/config/config.component';
+import { SidebarModule } from 'primeng/sidebar';
+import { TableModule } from 'primeng/table';
+import { OverlayPanelModule } from 'primeng/overlaypanel';
+import { ConfirmPopupModule } from 'primeng/confirmpopup';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     SaidasComponent,
-    NavComponent
+    NavComponent,
+    ConfigComponent
   ],
   imports: [
     BrowserModule,
@@ -43,7 +49,11 @@ import { CheckboxModule } from 'primeng/checkbox';
     ToastModule,
     HttpClientModule,
     ProgressSpinnerModule,
-    CheckboxModule
+    CheckboxModule,
+    SidebarModule,
+    TableModule,
+    OverlayPanelModule,
+    ConfirmPopupModule
   ],
   providers: [FormBuilder, MessageService, SaidaService],
   bootstrap: [AppComponent]
