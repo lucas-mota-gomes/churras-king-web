@@ -13,11 +13,11 @@
     <div class="mb-3 row justify-content-center animate__animated" [ngClass]="{'animate__slideInRight': !animate}">
       <div class="col">
         <label class="form-label d-block">Nome</label>
-        <p-dropdown formControlName="nome" [options]="tipo" optionValue="name" optionLabel="name">
+        <p-dropdown formControlName="nome" [options]="motoboyData.DATA" optionValue="name" optionLabel="name">
         </p-dropdown>
       </div>
     </div>
-    <div class="mb-3 row justify-content-center animate__animated" [ngClass]="{'animate__slideInRight': !animate}">
+    <div class="mb-3 row justify-content-center animate__animated" [ngClass]="{'animate__slideInLeft': !animate}">
       <div class="col-6 input-number">
         <label class="form-label d-block">Entregas</label>
         <p-inputNumber [minFractionDigits]="0" locale="es-ES" formControlName="entregas" [showButtons]="true"
@@ -64,6 +64,7 @@
     <div class="mb-3 row justify-content-center">
       <button (click)="salvar()" [disabled]="loading || !motoboysForm.valid"
         class="btn btn-danger col-6 mb-3 me-1">Salvar</button>
+      <button (click)="exportar()" [disabled]="loading" class="btn btn-danger col-6 mb-3 me-1">Exportar</button>
       <button routerLink="/home" class="btn btn-danger col-6">Voltar</button>
       <p-progressSpinner class="position-absolute" *ngIf="loading"></p-progressSpinner>
     </div>

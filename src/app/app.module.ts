@@ -35,6 +35,7 @@ import { InvestimentosComponent } from './pages/investimentos/investimentos.comp
 import { CalendarModule } from 'primeng/calendar';
 import { TransporteLojaComponent } from './pages/transporte-loja/transporte-loja.component';
 import { MentoriasComponent } from './pages/mentorias/mentorias.component';
+import { ExcelService } from './services/excel.service';
 @NgModule({
   declarations: [
     AppComponent,
@@ -72,7 +73,7 @@ import { MentoriasComponent } from './pages/mentorias/mentorias.component';
     InputTextareaModule,
     CalendarModule
   ],
-  providers: [FormBuilder, MessageService, SaidaService],
+  providers: [FormBuilder, MessageService, SaidaService, ExcelService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

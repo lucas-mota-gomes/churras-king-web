@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MessageService } from 'primeng/api';
 import { ConfigService } from 'src/app/services/config.service';
+import { ExcelService } from 'src/app/services/excel.service';
 import { SaidaService } from 'src/app/services/saida.service';
 
 @Component({
@@ -75,11 +76,20 @@ export class SaidasComponent implements OnInit {
     vTot: [0, [Validators.required]],
     status: [false, [Validators.required]]
   });
-
+  public animate: boolean = false;
   slider: number = 0;
-  constructor(private _fb: FormBuilder, private messageService: MessageService, private saidaService: SaidaService, private configService: ConfigService) { }
+  constructor(
+    private _fb: FormBuilder,
+    private messageService: MessageService,
+    private saidaService: SaidaService,
+    private configService: ConfigService,
+    private excelService: ExcelService
+  ) { }
 
   ngOnInit(): void {
+    setTimeout(() => {
+      this.animate = true;
+    }, 1000);
     this.getProducts();
   }
 
@@ -102,6 +112,18 @@ export class SaidasComponent implements OnInit {
 
   async getProducts() {
     this.productData = await this.configService.getProduto();
+  }
+
+  async exportar() {
+    const saidas = await this.configService.getData('saida');
+    for (const item of saidas.DATA) {
+      delete item['@collectionName'];
+      delete item['id'];
+      delete item['updated'];
+      delete item['@collectionId'];
+      delete item['@expand'];
+    }
+    this.excelService.exportAsExcelFile(saidas.DATA, "Saidas")
   }
 
   getControler(controler: string) {

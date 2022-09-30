@@ -18,8 +18,7 @@
       </div>
       <div class="col-6 input-number">
         <label class="form-label d-block">Tipo</label>
-        <p-dropdown (ngModelChange)="teste()" optionValue="name" optionLabel="name" formControlName="tipo"
-          [options]="tipos">
+        <p-dropdown optionValue="name" optionLabel="name" formControlName="tipo" [options]="tipos">
         </p-dropdown>
       </div>
     </div>
@@ -47,6 +46,7 @@
     <div class="mb-3 row justify-content-center">
       <button (click)="salvar()" [disabled]="loading || !adiantamentoForm.valid"
         class="btn btn-danger col-6 mb-3 me-1">Salvar</button>
+      <button (click)="exportar()" [disabled]="loading" class="btn btn-danger col-6 mb-3 me-1">Exportar</button>
       <button routerLink="/home" class="btn btn-danger col-6">Voltar</button>
       <p-progressSpinner class="position-absolute" *ngIf="loading"></p-progressSpinner>
     </div>

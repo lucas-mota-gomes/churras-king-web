@@ -15,6 +15,12 @@
       <span>Gerenciar categorias</span>
       <i class="pi pi-chevron-right position-absolute"></i>
     </div>
+    <div (click)="open('Motoboy')"
+      class="item-card text-center mb-3 py-3 position-relative animate__animated animate__slideInLeft">
+      <h2>Motoboys</h2>
+      <span>Gerenciar motoboys</span>
+      <i class="pi pi-chevron-right position-absolute"></i>
+    </div>
   </div>
 </section>
 
@@ -29,11 +35,13 @@
           <th></th>
         </tr>
       </ng-template>
-      <ng-template pTemplate="body" let-product>
+      <ng-template pTemplate="body" let-product let-index="rowIndex">
         <tr>
           <td>{{product.name}}</td>
           <td>{{product.type == 1 ? 'Kg/Ml' : 'Unidade'}}</td>
-          <td><i class="pi pi-trash"></i></td>
+          <td><i (click)="delete('produtos',product.id); productData.DATA[index] = {name: 'deletado'}"
+              class="pi pi-trash"></i>
+          </td>
         </tr>
       </ng-template>
     </p-table>
@@ -58,11 +66,82 @@
   </div>
 </p-sidebar>
 
-<p-sidebar [position]="'bottom'" [style]="{height:'80vh', background: '#2d132c', color: 'white'}"
+<p-sidebar [position]="'bottom'" [fullScreen]="true" [style]="{background: '#2d132c', color: 'white'}"
   [(visible)]="display[1]">
-  <div class="row">
-    <div class="col-6">
-      teste2
+  <div *ngIf="categoryData" class="py-4">
+    <p-table [value]="categoryData.DATA" responsiveLayout="scroll">
+      <ng-template pTemplate="header">
+        <tr>
+          <th>Nome</th>
+          <th></th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-product let-index="rowIndex">
+        <tr>
+          <td>{{product.name}}</td>
+          <td><i (click)="delete('categorias',product.id); motoboyData.DATA[index] = {name: 'deletado'}"
+              class="pi pi-trash"></i>
+          </td>
+        </tr>
+      </ng-template>
+    </p-table>
+
+    <div class="d-flex w-100 justify-content-center my-5">
+      <button class="btn btn-gradient" (click)="op.toggle($event)">Adicionar novo <b>+</b></button>
+      <p-overlayPanel #op
+        [style]="{background: '#2d132c', color: 'white', 'text-align': 'center', border: '1px solid red'}">
+        <ng-template pTemplate>
+          <div class="mb-3 row">
+            <label class="form-label d-block">Categoria</label>
+            <input type="text" placeholder="Categoria" pInputText #categoria />
+          </div>
+          <!-- <div class="mb-3 row justify-content-center">
+            <p-selectButton [options]="[{name: 'Unidade', type: 0}, {name: 'Kg/Ml', type: 1}]" [(ngModel)]="productType"
+              #tipo optionLabel="name"></p-selectButton>
+          </div> -->
+          <button (click)="newData('categorias', {name: categoria.value})" class="btn btn-gradient">Adicionar</button>
+        </ng-template>
+      </p-overlayPanel>
+    </div>
+  </div>
+</p-sidebar>
+
+<p-sidebar [position]="'bottom'" [fullScreen]="true" [style]="{background: '#2d132c', color: 'white'}"
+  [(visible)]="display[2]">
+  <div *ngIf="motoboyData" class="py-4">
+    <p-table [value]="motoboyData.DATA" responsiveLayout="scroll">
+      <ng-template pTemplate="header">
+        <tr>
+          <th>Nome</th>
+          <th></th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-product let-index="rowIndex">
+        <tr>
+          <td>{{product.name}}</td>
+          <td><i (click)="delete('motoboy',product.id); motoboyData.DATA[index] = {name: 'deletado'}"
+              class="pi pi-trash"></i>
+          </td>
+        </tr>
+      </ng-template>
+    </p-table>
+
+    <div class="d-flex w-100 justify-content-center my-5">
+      <button class="btn btn-gradient" (click)="op.toggle($event)">Adicionar novo <b>+</b></button>
+      <p-overlayPanel #op
+        [style]="{background: '#2d132c', color: 'white', 'text-align': 'center', border: '1px solid red'}">
+        <ng-template pTemplate>
+          <div class="mb-3 row">
+            <label class="form-label d-block">Categoria</label>
+            <input type="text" placeholder="motoboy" pInputText #motoboys />
+          </div>
+          <!-- <div class="mb-3 row justify-content-center">
+            <p-selectButton [options]="[{name: 'Unidade', type: 0}, {name: 'Kg/Ml', type: 1}]" [(ngModel)]="productType"
+              #tipo optionLabel="name"></p-selectButton>
+          </div> -->
+          <button (click)="newData('motoboy', {name: motoboys.value})" class="btn btn-gradient">Adicionar</button>
+        </ng-template>
+      </p-overlayPanel>
     </div>
   </div>
 </p-sidebar>

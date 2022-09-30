@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MessageService } from 'primeng/api';
 import { ConfigService } from 'src/app/services/config.service';
+import { ExcelService } from 'src/app/services/excel.service';
 
 @Component({
   selector: 'app-adiantamento',
@@ -35,7 +36,7 @@ export class AdiantamentoComponent implements OnInit {
 
   public loading: boolean = false;
   public animate: boolean = false;
-  constructor(private _fb: FormBuilder, private messageService: MessageService, private configService: ConfigService) { }
+  constructor(private excelService: ExcelService, private _fb: FormBuilder, private messageService: MessageService, private configService: ConfigService) { }
 
   ngOnInit(): void {
     setTimeout(() => {
@@ -43,8 +44,16 @@ export class AdiantamentoComponent implements OnInit {
     }, 1000);
   }
 
-  teste() {
-    console.log(this.adiantamentoForm.value);
+  async exportar() {
+    const saidas = await this.configService.getData('adiantamento');
+    for (const item of saidas.DATA) {
+      delete item['@collectionName'];
+      delete item['id'];
+      delete item['updated'];
+      delete item['@collectionId'];
+      delete item['@expand'];
+    }
+    this.excelService.exportAsExcelFile(saidas.DATA, "Adiantamentos")
   }
 
   public salvar() {

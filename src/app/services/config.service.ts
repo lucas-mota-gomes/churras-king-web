@@ -26,4 +26,8 @@ export class ConfigService {
   async getData(collection: string): Promise<string | any> {
     return this.http.get(`http://localhost:5001/your-projeto/us-central1/api/data/${collection}`).toPromise();
   }
+
+  async deleteData(collection: string, id: string): Promise<string | any> {
+    return this.http.delete(`http://localhost:5001/your-projeto/us-central1/api/data/${collection}/${id}`).toPromise();
+  }
 }

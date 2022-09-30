@@ -24,6 +24,7 @@
     <div class="mb-3 row justify-content-center">
       <button (click)="salvar()" [disabled]="loading || !motoboysForm.valid"
         class="btn btn-danger col-6 mb-3 me-1">Salvar</button>
+      <button (click)="exportar()" [disabled]="loading" class="btn btn-danger col-6 mb-3 me-1">Exportar</button>
       <button routerLink="/home" class="btn btn-danger col-6">Voltar</button>
       <p-progressSpinner class="position-absolute" *ngIf="loading"></p-progressSpinner>
     </div>
