@@ -21,13 +21,15 @@ import { MessageService } from 'primeng/api';
 import { SaidaService } from './services/saida.service';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { CheckboxModule } from 'primeng/checkbox';
+import { EntradasComponent } from './pages/entradas/entradas.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     SaidasComponent,
-    NavComponent
+    NavComponent,
+    EntradasComponent
   ],
   imports: [
     BrowserModule,
