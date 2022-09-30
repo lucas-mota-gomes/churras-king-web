@@ -22,6 +22,11 @@ import { SaidaService } from './services/saida.service';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { CheckboxModule } from 'primeng/checkbox';
 import { EntradasComponent } from './pages/entradas/entradas.component';
+import { ConfigComponent } from './pages/config/config.component';
+import { SidebarModule } from 'primeng/sidebar';
+import { TableModule } from 'primeng/table';
+import { OverlayPanelModule } from 'primeng/overlaypanel';
+import { ConfirmPopupModule } from 'primeng/confirmpopup';
 
 @NgModule({
   declarations: [
@@ -29,7 +34,8 @@ import { EntradasComponent } from './pages/entradas/entradas.component';
     HomeComponent,
     SaidasComponent,
     NavComponent,
-    EntradasComponent
+    EntradasComponent,
+    ConfigComponent
   ],
   imports: [
     BrowserModule,
@@ -45,7 +51,11 @@ import { EntradasComponent } from './pages/entradas/entradas.component';
     ToastModule,
     HttpClientModule,
     ProgressSpinnerModule,
-    CheckboxModule
+    CheckboxModule,
+    SidebarModule,
+    TableModule,
+    OverlayPanelModule,
+    ConfirmPopupModule
   ],
   providers: [FormBuilder, MessageService, SaidaService],
   bootstrap: [AppComponent]

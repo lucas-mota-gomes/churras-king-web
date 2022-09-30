@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MessageService } from 'primeng/api';
+import { ConfigService } from 'src/app/services/config.service';
 import { SaidaService } from 'src/app/services/saida.service';
 
 @Component({
@@ -23,7 +24,7 @@ export class SaidasComponent implements OnInit {
     { name: "SEGURANCA" },
     { name: "TRANSPORTE" }
   ];
-
+  // Medida 0: Unidade, 1 float
   produtos: any[] = [
     { name: "B1" },
     { name: "B2" },
@@ -61,7 +62,7 @@ export class SaidasComponent implements OnInit {
 
   public loading: boolean = false;
   public isCopy: boolean[] = [];
-
+  public productData: any = [];
   public saidasForm: FormGroup = this._fb.group({
     categoria: [this.categorias[0].name, [Validators.required]],
     tipo: [null, [Validators.required]],
@@ -76,9 +77,10 @@ export class SaidasComponent implements OnInit {
   });
 
   slider: number = 0;
-  constructor(private _fb: FormBuilder, private messageService: MessageService, private saidaService: SaidaService) { }
+  constructor(private _fb: FormBuilder, private messageService: MessageService, private saidaService: SaidaService, private configService: ConfigService) { }
 
   ngOnInit(): void {
+    this.getProducts();
   }
 
   teste(event: any) {
@@ -98,6 +100,10 @@ export class SaidasComponent implements OnInit {
     }
   }
 
+  async getProducts(){
+    this.productData = await this.configService.getProduto();
+  }
+
   getControler(controler: string) {
     return this.saidasForm.get(controler)?.value;
   }
@@ -111,7 +117,7 @@ export class SaidasComponent implements OnInit {
     const body = {
       tipo: this.saidasForm.value.tipo.name,
       categoria: this.saidasForm.value.categoria,
-      produto: this.saidasForm.value.produto,
+      produto: this.saidasForm.value.produto.name,
       quantidade_de_caixas: this.saidasForm.value.qtCaixa,
       quantidade_por_caixa: this.saidasForm.value.qtPorCaixa,
       valor_unidade_pacote: this.saidasForm.value.vUniPac,
@@ -138,6 +144,7 @@ export class SaidasComponent implements OnInit {
       this.addSingle();
       this.loading = false;
     }).catch((error: any) => {
+      this.loading = false;
       console.log(error);
     })
   }
