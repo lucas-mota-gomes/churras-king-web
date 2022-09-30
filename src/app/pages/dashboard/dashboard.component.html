@@ -1,0 +1,26 @@
+<style>
+  .col-6.input-number input {
+    width: 50%;
+  }
+
+  label {
+    margin-top: 1rem;
+  }
+</style>
+
+<section class="px-4">
+  <div class="text-center saida-form p-3" action="">
+    <div class="mb-3 row justify-content-center animate__animated">
+      <div class="col">
+        <div class="card">
+          <h5>Dados Venda</h5>
+          <p-chart type="bar" [data]="basicData" [options]="basicOptions"></p-chart>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</section>
+
+<p-toast position="top-left"></p-toast>

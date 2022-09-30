@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { NavComponent } from './component/nav/nav.component';
 import { AdiantamentoComponent } from './pages/adiantamento/adiantamento.component';
 import { ConfigComponent } from './pages/config/config.component';
+import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { EntradasComponent } from './pages/entradas/entradas.component';
 import { HomeComponent } from './pages/home/home.component';
 import { InvestimentosComponent } from './pages/investimentos/investimentos.component';
@@ -23,6 +24,7 @@ const routes: Routes = [
       { path: 'adiantamento', component: AdiantamentoComponent },
       { path: 'investimentos', component: InvestimentosComponent },
       { path: 'transporte-loja', component: TransporteLojaComponent },
+      { path: 'dashBoard', component: DashboardComponent },
       { path: 'config', component: ConfigComponent }
     ]
 

@@ -36,6 +36,8 @@ import { CalendarModule } from 'primeng/calendar';
 import { TransporteLojaComponent } from './pages/transporte-loja/transporte-loja.component';
 import { MentoriasComponent } from './pages/mentorias/mentorias.component';
 import { ExcelService } from './services/excel.service';
+import { ChartModule } from 'primeng/chart';
+import { DashboardComponent } from './pages/dashboard/dashboard.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -49,7 +51,8 @@ import { ExcelService } from './services/excel.service';
     AdiantamentoComponent,
     InvestimentosComponent,
     TransporteLojaComponent,
-    MentoriasComponent
+    MentoriasComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,
@@ -71,7 +74,8 @@ import { ExcelService } from './services/excel.service';
     OverlayPanelModule,
     ConfirmPopupModule,
     InputTextareaModule,
-    CalendarModule
+    CalendarModule,
+    ChartModule
   ],
   providers: [FormBuilder, MessageService, SaidaService, ExcelService],
   bootstrap: [AppComponent]
