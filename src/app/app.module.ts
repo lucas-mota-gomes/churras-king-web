@@ -27,7 +27,14 @@ import { SidebarModule } from 'primeng/sidebar';
 import { TableModule } from 'primeng/table';
 import { OverlayPanelModule } from 'primeng/overlaypanel';
 import { ConfirmPopupModule } from 'primeng/confirmpopup';
-
+import { MotoboysComponent } from './pages/motoboys/motoboys.component';
+import { ProlaboreComponent } from './pages/prolabore/prolabore.component';
+import { AdiantamentoComponent } from './pages/adiantamento/adiantamento.component';
+import { InputTextareaModule } from 'primeng/inputtextarea';
+import { InvestimentosComponent } from './pages/investimentos/investimentos.component';
+import { CalendarModule } from 'primeng/calendar';
+import { TransporteLojaComponent } from './pages/transporte-loja/transporte-loja.component';
+import { MentoriasComponent } from './pages/mentorias/mentorias.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -35,7 +42,13 @@ import { ConfirmPopupModule } from 'primeng/confirmpopup';
     SaidasComponent,
     NavComponent,
     EntradasComponent,
-    ConfigComponent
+    ConfigComponent,
+    MotoboysComponent,
+    ProlaboreComponent,
+    AdiantamentoComponent,
+    InvestimentosComponent,
+    TransporteLojaComponent,
+    MentoriasComponent
   ],
   imports: [
     BrowserModule,
@@ -55,7 +68,9 @@ import { ConfirmPopupModule } from 'primeng/confirmpopup';
     SidebarModule,
     TableModule,
     OverlayPanelModule,
-    ConfirmPopupModule
+    ConfirmPopupModule,
+    InputTextareaModule,
+    CalendarModule
   ],
   providers: [FormBuilder, MessageService, SaidaService],
   bootstrap: [AppComponent]

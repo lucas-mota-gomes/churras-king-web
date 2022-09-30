@@ -88,7 +88,7 @@ export class SaidasComponent implements OnInit {
   }
 
   addSingle() {
-    this.messageService.add({ severity: 'success', summary: 'Sucesso', detail: 'Saída cadasrada com sucesso' });
+    this.messageService.add({ severity: 'success', summary: 'Sucesso', detail: 'Saída cadastrada com sucesso' });
   }
 
   updateValues() {
@@ -100,7 +100,7 @@ export class SaidasComponent implements OnInit {
     }
   }
 
-  async getProducts(){
+  async getProducts() {
     this.productData = await this.configService.getProduto();
   }
 

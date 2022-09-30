@@ -7,20 +7,13 @@
 <section class="px-4">
   <form class="text-center saida-form p-3" [formGroup]="entradasForm" action="">
     <div class="mb-3 row justify-content-center animate__animated" [ngClass]="{'animate__slideInRight': !animate}">
-      <div class="col-6">
-        <label class="form-label d-block">Tipo</label>
-        <p-dropdown formControlName="tipo" [options]="tipo" optionValue="name" optionLabel="name">
-        </p-dropdown>
-      </div>
-
-      <div class="col-6 input-number">
+      <div class="col input-number">
         <label class="form-label d-block">Valor</label>
         <p-inputNumber [minFractionDigits]="2" locale="es-ES" formControlName="valor" [showButtons]="true"
           buttonLayout="horizontal" spinnerMode="horizontal" decrementButtonClass="p-button-danger"
           incrementButtonClass="p-button-success" incrementButtonIcon="pi pi-plus" decrementButtonIcon="pi pi-minus">
         </p-inputNumber>
       </div>
-
     </div>
   </form>
   <div class="text-center saida-form p-3 pt-0 animate__animated" [ngClass]="{'animate__slideInRight': !animate}">

@@ -40,17 +40,18 @@
 
     <div class="d-flex w-100 justify-content-center my-5">
       <button class="btn btn-gradient" (click)="op.toggle($event)">Adicionar novo <b>+</b></button>
-      <p-overlayPanel #op [style]="{background: '#2d132c', color: 'white', 'text-align': 'center', border: '1px solid red'}">
+      <p-overlayPanel #op
+        [style]="{background: '#2d132c', color: 'white', 'text-align': 'center', border: '1px solid red'}">
         <ng-template pTemplate>
-            <div class="mb-3 row">
-              <label class="form-label d-block">Produto</label>
-              <input type="text" pInputText [(ngModel)]="productName"/>
-            </div>
-            <div class="mb-3 row justify-content-center">
-              <p-selectButton [options]="[{name: 'Unidade', type: 0}, {name: 'Kg/Ml', type: 1}]"
-                [(ngModel)]="productType" optionValue="type" optionLabel="name"></p-selectButton>
-            </div>
-            <button (click)="newProduct()" class="btn btn-gradient">Adicionar</button>
+          <div class="mb-3 row">
+            <label class="form-label d-block">Produto</label>
+            <input type="text" placeholder="Produto" pInputText [(ngModel)]="productName" />
+          </div>
+          <div class="mb-3 row justify-content-center">
+            <p-selectButton [options]="[{name: 'Unidade', type: 0}, {name: 'Kg/Ml', type: 1}]" [(ngModel)]="productType"
+              optionValue="type" optionLabel="name"></p-selectButton>
+          </div>
+          <button (click)="newProduct()" class="btn btn-gradient">Adicionar</button>
         </ng-template>
       </p-overlayPanel>
     </div>

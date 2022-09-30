@@ -1,31 +1,28 @@
 <style>
-  .input-number input {
+  .col-6.input-number input {
     width: 50%;
+  }
+
+  label {
+    margin-top: 1rem;
   }
 </style>
 
 <section class="px-4">
-  <form class="text-center saida-form p-3" [formGroup]="entradasForm" action="">
+  <form class="text-center saida-form p-3" [formGroup]="motoboysForm" action="">
     <div class="mb-3 row justify-content-center animate__animated" [ngClass]="{'animate__slideInRight': !animate}">
-      <div class="col-6">
-        <label class="form-label d-block">Tipo</label>
-        <p-dropdown formControlName="tipo" [options]="tipo" optionValue="name" optionLabel="name">
-        </p-dropdown>
-      </div>
-
-      <div class="col-6 input-number">
+      <div class="col input-number">
         <label class="form-label d-block">Valor</label>
         <p-inputNumber [minFractionDigits]="2" locale="es-ES" formControlName="valor" [showButtons]="true"
           buttonLayout="horizontal" spinnerMode="horizontal" decrementButtonClass="p-button-danger"
           incrementButtonClass="p-button-success" incrementButtonIcon="pi pi-plus" decrementButtonIcon="pi pi-minus">
         </p-inputNumber>
       </div>
-
     </div>
   </form>
   <div class="text-center saida-form p-3 pt-0 animate__animated" [ngClass]="{'animate__slideInRight': !animate}">
     <div class="mb-3 row justify-content-center">
-      <button (click)="salvar()" [disabled]="loading || !entradasForm.valid"
+      <button (click)="salvar()" [disabled]="loading || !motoboysForm.valid"
         class="btn btn-danger col-6 mb-3 me-1">Salvar</button>
       <button routerLink="/home" class="btn btn-danger col-6">Voltar</button>
       <p-progressSpinner class="position-absolute" *ngIf="loading"></p-progressSpinner>

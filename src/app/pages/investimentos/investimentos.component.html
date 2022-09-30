@@ -1,16 +1,19 @@
 <style>
-  .input-number input {
+  .col-6.input-number input {
     width: 50%;
+  }
+
+  label {
+    margin-top: 1rem;
   }
 </style>
 
 <section class="px-4">
-  <form class="text-center saida-form p-3" [formGroup]="entradasForm" action="">
+  <form class="text-center saida-form p-3" [formGroup]="investimentosForm" action="">
     <div class="mb-3 row justify-content-center animate__animated" [ngClass]="{'animate__slideInRight': !animate}">
-      <div class="col-6">
-        <label class="form-label d-block">Tipo</label>
-        <p-dropdown formControlName="tipo" [options]="tipo" optionValue="name" optionLabel="name">
-        </p-dropdown>
+      <div class="col">
+        <label class="form-label d-block">Data do Pagamento</label>
+        <p-calendar dateFormat="dd/mm/yy" formControlName="dataPagamento" [showIcon]="true" inputId="icon"></p-calendar>
       </div>
 
       <div class="col-6 input-number">
@@ -21,11 +24,26 @@
         </p-inputNumber>
       </div>
 
+      <div class="col input-number">
+        <label class="form-label d-block">Parcelas</label>
+        <input placeholder="1/7..." formControlName="parcelas" type="text" pInputText />
+      </div>
+
+      <div class="col-6 input-number">
+        <label class="form-label d-block">Descrição</label>
+        <input placeholder="Descrição..." formControlName="description" type="text" pInputText />
+      </div>
+
+      <div class="col-6 input-number">
+        <label class="form-label d-block">Status</label>
+        <p-dropdown formControlName="status" [options]="status" optionValue="name" optionLabel="name">
+        </p-dropdown>
+      </div>
     </div>
   </form>
   <div class="text-center saida-form p-3 pt-0 animate__animated" [ngClass]="{'animate__slideInRight': !animate}">
     <div class="mb-3 row justify-content-center">
-      <button (click)="salvar()" [disabled]="loading || !entradasForm.valid"
+      <button (click)="salvar()" [disabled]="loading || !investimentosForm.valid"
         class="btn btn-danger col-6 mb-3 me-1">Salvar</button>
       <button routerLink="/home" class="btn btn-danger col-6">Voltar</button>
       <p-progressSpinner class="position-absolute" *ngIf="loading"></p-progressSpinner>

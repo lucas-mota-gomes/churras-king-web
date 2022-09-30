@@ -21,10 +21,12 @@
     "@angular/platform-browser-dynamic": "~11.2.14",
     "@angular/router": "~11.2.14",
     "animate.css": "^4.1.1",
+    "file-saver": "^2.0.5",
     "primeicons": "^6.0.1",
     "primeng": "^11.3.1",
     "rxjs": "~6.6.0",
     "tslib": "^2.0.0",
+    "xlsx": "^0.18.5",
     "zone.js": "~0.11.3"
   },
   "devDependencies": {
