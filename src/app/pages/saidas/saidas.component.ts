@@ -64,6 +64,7 @@ export class SaidasComponent implements OnInit {
   public loading: boolean = false;
   public isCopy: boolean[] = [];
   public productData: any = [];
+  public categoryData: any = [];
   public saidasForm: FormGroup = this._fb.group({
     categoria: [this.categorias[0].name, [Validators.required]],
     tipo: [null, [Validators.required]],
@@ -112,6 +113,7 @@ export class SaidasComponent implements OnInit {
 
   async getProducts() {
     this.productData = await this.configService.getProduto();
+    this.categoryData = await this.configService.getData('categorias');
   }
 
   async exportar() {
@@ -144,7 +146,7 @@ export class SaidasComponent implements OnInit {
       quantidade_por_caixa: this.saidasForm.value.qtPorCaixa,
       valor_unidade_pacote: this.saidasForm.value.vUniPac,
       quantidade_total_por_caixa: this.saidasForm.value.qtTotCaixa,
-      valor_total: this.saidasForm.value.vTot,
+      valor: this.saidasForm.value.vTot,
       valor_unidade: this.saidasForm.value.vUni
     }
     console.log("🚀 ~ file: saidas.component.ts ~ line 122 ~ SaidasComponent ~ salvar ~ body", body)

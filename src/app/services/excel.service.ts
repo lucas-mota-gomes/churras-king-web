@@ -23,12 +23,18 @@ export class ExcelService {
     let workSheetArray: any[] = [];
     let obj: any = {};
     for (const item of json) {
-      let collectionName = item.data[0].collectionName;
-      const worksheet: XLSX.WorkSheet = XLSX.utils.json_to_sheet(item.data);
-      obj[collectionName] = worksheet;
-      workSheetArray.push(obj);
+      const worksheet: XLSX.WorkSheet = XLSX.utils.json_to_sheet(item);
+      workSheetArray.push(worksheet);
     }
-    const workbook: XLSX.WorkBook = { Sheets: { 'data': workSheetArray }, SheetNames: ['data'] };
+    const workbook: XLSX.WorkBook = { Sheets: {
+      'Adiantamentos': workSheetArray[0],
+      'Entradas': workSheetArray[1],
+      'Investimentos': workSheetArray[2],
+      'Motoboys': workSheetArray[3],
+      'Prolabore': workSheetArray[4],
+      'Saidas': workSheetArray[5],
+      'TransporteLoja': workSheetArray[6]
+   }, SheetNames: ['Adiantamentos', 'Entradas', 'Investimentos', 'Motoboys', 'Prolabore', 'Saidas', 'TransporteLoja'] };
     const excelBuffer: any = XLSX.write(workbook, { bookType: 'xlsx', type: 'array' });
     this.saveAsExcelFile(excelBuffer, excelFileName);
   }

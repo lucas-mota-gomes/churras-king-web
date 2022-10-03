@@ -12,10 +12,10 @@ export class SaidaService {
   ) { }
 
   async createSaida(payload: any): Promise<string | any> {
-    return this.http.post(`http://localhost:5001/your-projeto/us-central1/api/saida`, payload).toPromise();
+    return this.http.post(`${environment.url}/saida`, payload).toPromise();
   }
 
   async getSaida(): Promise<string | any> {
-    return this.http.get(`http://localhost:5001/your-projeto/us-central1/api/saida`).toPromise();
+    return this.http.get(`${environment.url}/saida`).toPromise();
   }
 }

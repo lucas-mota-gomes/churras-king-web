@@ -13,7 +13,7 @@
     <div class="mb-3 row justify-content-center animate__animated" [ngClass]="{'animate__slideInRight': !animate}">
       <div class="col">
         <label class="form-label d-block">Nome</label>
-        <p-dropdown formControlName="nome" [options]="nomes" optionValue="name" optionLabel="name">
+        <p-dropdown formControlName="nome" [options]="namesData.DATA" optionValue="name" optionLabel="name">
         </p-dropdown>
       </div>
       <div class="col-6 input-number">

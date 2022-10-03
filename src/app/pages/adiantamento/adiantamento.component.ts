@@ -26,6 +26,8 @@ export class AdiantamentoComponent implements OnInit {
     { name: "A Pagar" }
   ];
 
+  namesData: any = [];
+
   public adiantamentoForm: FormGroup = this._fb.group({
     nome: [this.nomes[0].name, [Validators.required]],
     valor: [0, [Validators.required]],
@@ -42,6 +44,11 @@ export class AdiantamentoComponent implements OnInit {
     setTimeout(() => {
       this.animate = true;
     }, 1000);
+    this.getData();
+  }
+
+  async getData(){
+    this.namesData = await this.configService.getData('motoboy');
   }
 
   async exportar() {

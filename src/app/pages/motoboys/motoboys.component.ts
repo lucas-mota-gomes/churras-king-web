@@ -9,7 +9,7 @@ import { ExcelService } from 'src/app/services/excel.service';
   styleUrls: ['./motoboys.component.scss']
 })
 export class MotoboysComponent implements OnInit {
-
+  public motoboyData: any = [];
   public motoboysForm: FormGroup = this._fb.group({
     nome: [null, [Validators.required]],
     valor: [0, [Validators.required]],
@@ -26,7 +26,7 @@ export class MotoboysComponent implements OnInit {
 
   public loading: boolean = false;
   public animate: boolean = false;
-  public motoboyData: any = [];
+
   constructor(private excelService: ExcelService, private _fb: FormBuilder, private messageService: MessageService, private configService: ConfigService) { }
 
   ngOnInit(): void {
@@ -38,6 +38,7 @@ export class MotoboysComponent implements OnInit {
 
   async getMotoboys() {
     this.motoboyData = await this.configService.getData('motoboy');
+    this.motoboysForm.get('nome')?.setValue(this.motoboyData.DATA[0].name);
   }
 
   async exportar() {
